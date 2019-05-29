@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Flight_CS43500.Models.AirlineCarrier>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>US Airline Carriers</h2>
+
+
+<table id="AirlineCarrierTables" class="table table-hover table-bordered">
+    <thead>
+        <tr>
+            <th>
+                <strong>@Html.DisplayNameFor(model => model.AirlineCarrierName)</strong>
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AirlineAbbreviation)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink(item.AirlineCarrierName, "Details", "AirlineCarriers", new { id = item.AirlineCarrierId }, null)
+
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AirlineAbbreviation)
+                </td>
+
+
+            </tr>
+
+        }
+    </tbody>
+</table>
+
+<script>
+    $(document).ready(function () {
+        $('#AirlineCarrierTables').DataTable();
+    });
+</script>

@@ -1,0 +1,35 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>Flight Planner</h1>
+    <p class="lead">Flight Planner is a Web-Application that provides users with the information to make better flight plans</p>
+    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+</div>
+<video class="video-js" data-setup='{"autoplay": true, "preload": "auto", "muted": true, "width" : 1140, "height": 642, "loop": true}'>
+    <source src="~/Video/Commercial jets take-off & landings (HD).mp4" type="video/mp4">
+ </video>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2> US Airline Carrier Statistics</h2>
+        <p>View a break down of a Carriers Statisitics.</p>
+        <br />
+        <p>@Html.ActionLink("Carriers", "Index", "AirlineCarriers", null, new { @class = "btn btn-primary" })</p>
+    </div>
+    <div class="col-md-4">
+        <h2>Plan A Trip</h2>
+        <p>Choose a Potential Flight and get the most up to date information.</p>
+        <p>@Html.ActionLink("Plan a Trip", "PlanFlight", "Home", null, new { @class = "btn btn-success" })</p>
+
+    </div>
+    <div class="col-md-4">
+        <h2>US Airport Statistics and Departure Table</h2>
+        <p>Airport Statistics and Information</p>
+        <br />
+        <p>@Html.ActionLink("Check Airports", "Index", "Airports", null, new { @class = "btn btn-warning" })</p>
+    </div>
+
+</div>
+

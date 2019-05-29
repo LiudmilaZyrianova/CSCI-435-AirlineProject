@@ -1,0 +1,52 @@
+﻿@model Flight_CS43500.Models.ViewModel.AirlineCarrierViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h1>@Model.AirlineCarrier.AirlineCarrierName</h1>
+
+<table class="table table-hover table-bordered" style="width: 50%;">
+    <thead>
+        <tr class="info">
+            <th>Performance Criteria</th>
+            <th>Percentage</th>
+        </tr>
+    </thead>
+    <tbody >
+        <tr class="success">
+            <td><strong>On Time Percentage</strong></td>
+            <td><strong>@Model.AirlineCarrier.OnTimePercentage %</strong></td>
+        </tr>
+        <tr class="success">
+            <td><strong>Carrier Delay Percentage</strong></td>
+            <td><strong>@Model.AirlineCarrier.AirCarrierDelayPercentage %</strong></td>
+        </tr>
+        <tr class="success">
+            <td><strong>Weather Delay Percentage</strong></td>
+            <td><strong>@Model.AirlineCarrier.WeatherDelayPercentage %</strong></td>
+        </tr>
+        <tr class="success">
+            <td><strong>NSA Delay Percentage</strong></td>
+            <td><strong>@Model.AirlineCarrier.NASDelayPercentage %</strong></td>
+        </tr>
+        <tr class="success">
+            <td><strong>Security Delay Percentage</strong></td>
+            <td><strong>@Model.AirlineCarrier.SecurityDelayPercentage %</strong></td>
+        </tr>
+        <tr class="success">
+            <td><strong>Aircraft Delay Percentage</strong></td>
+            <td><strong>@Model.AirlineCarrier.AircraftDelayPercentage %</strong></td>
+        </tr>
+        <tr class="success">
+            <td><strong>Cancelled Delay Percentage</strong></td>
+            <td><strong>@Model.AirlineCarrier.CancelledDelayPercentage %</strong></td>
+        </tr>
+        <tr class="success">
+            <td><strong>Diverted Delay Percentage</strong></td>
+            <td><strong>@Model.AirlineCarrier.DivertedDelayPerctange %</strong></td>
+        </tr>
+
+    </tbody>
+</table>
+

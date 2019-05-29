@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>US Major and Regional Airports</h2>
+
+    <table id="AirportTable" class="table table-hover table-bordered" style="width:100%">
+        <thead>
+            <tr bgColor="#E1E1E3"  >
+                <th>Airport UID</th>
+                <th>Airport Name</th>
+                <th>Airport IATA</th>
+                <th>Airport Lat</th>
+                <th>Airport Long</th>
+                <th>Airport City Name</th>
+            </tr>
+        </thead>
+    </table>
+
+
+<script>
+    $(document).ready(function () {
+        $("#AirportTable").DataTable({
+            ajax: {
+                url: "/api/airports",
+                dataSrc: ""
+            },
+            columns: [
+                { data: "AirportId" },
+                {
+                    data: "AirportName",
+                    render: function (data, type, Airport) {
+                        return "<a href='/airports/details/" + Airport.AirportId + "'>" + Airport.AirportName + "</a>";
+                    }
+                },
+                { data: "AirportIATA" },
+                { data: "AirportLatitude" },
+                { data: "AirportLongitude" },
+                { data: "AirportCityName" }
+            ]
+        })
+    });
+
+</script>
+
+

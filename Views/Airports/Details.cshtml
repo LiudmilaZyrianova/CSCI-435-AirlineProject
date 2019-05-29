@@ -1,0 +1,159 @@
+﻿@model Flight_CS43500.Models.Airport
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>@Model.AirportName Information</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.AirportName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AirportName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AirportLatitude)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AirportLatitude)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AirportLongitude)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AirportLongitude)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AirportICAO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AirportICAO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AirportIATA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AirportIATA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AirportCityName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AirportCityName)
+        </dd>
+
+    </dl>
+</div>
+<div id="map" style="height:550px; width: 550px;"></div>
+<div>
+    <h4>Departure Time Table</h4>
+    <table id="Departure-Table" class="table table-hover table-bordered" style="width:100%">
+        <thead>
+            <tr bgColor="#E1E1E3">
+                <th>Flight Number</th>
+                <th>Carrier</th>
+                <th>Destination</th>
+                <th>Departure Time</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+    </table>
+</div>
+
+<p>
+    @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-success" })
+</p>
+<script>
+    var model = @Html.Raw(Json.Encode(Model));
+    console.log(model)
+     var map;
+        function initMap() {
+            map = new google.maps.Map(document.getElementById("map"), {
+                center: { lat: model.AirportLatitude, lng: model.AirportLongitude },
+                zoom: 13,
+                 mapTypeId: 'satellite'
+            });
+        }
+</script>
+<script>
+    var model = @Html.Raw(Json.Encode(Model));
+    $(document).ready(function () {
+       const url = 'http://aviation-edge.com/v2/public/timetable?key=6cbbfb-13a1db&iataCode=' + model.AirportIATA + '&type=departure&limit=100';
+        $("#Departure-Table").DataTable({
+            ajax: {
+                url: url,
+                dataSrc: "",
+
+            },
+            language: {
+                infoEmpty: "No Flights Scheduled...",
+                zeroRecords: "No Matching Criteria"},
+            columns: [
+               { data: "flight.iataNumber",
+                    render: function (data, type) {
+                        if (data ==='') {
+                            return 'N/A';
+                        }
+                        else {
+                            return data;
+                        }
+                    } },
+               { data: "airline.name",
+                    render: function (data, type) {
+                        if (data === '') {
+                            return 'N/A';
+                        }
+                        else {
+                            return data;
+                        }
+                    } },
+                {
+                    data: "arrival.iataCode",
+                    render: function (data, type) {
+                        if (data === '') {
+                            return 'N/A';
+                        }
+                        else {
+                            return data;
+                        }
+                    }
+                },
+               { data: "departure.scheduledTime",
+                    render: function (data, type, row) {
+                            var dateSplit = data.split('-').join(',').split('T').join(',').split(',');
+                            return type === "display" || type === "filter" ?
+                                dateSplit[1] + '-' + dateSplit[2] + '-' + dateSplit[0] + ' / ' +  dateSplit[3] :
+                                data;
+                        } },
+                { data: "status",
+                    render: function (data, type) {
+                        if (data==='') {
+                            return 'N/A';
+                        }
+                        else {
+                            return data;
+                        }
+                    } },
+              ]
+        })
+    })
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDYM2dx_rYz1Gh-F-wuXklzs-_5QJqB_gI&callback=initMap"
+        async defer></script>
+
+

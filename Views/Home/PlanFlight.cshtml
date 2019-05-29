@@ -1,0 +1,75 @@
+﻿@{
+    ViewBag.Title = "Plan Flight";
+}
+
+<h2>Plan Your Flight</h2>
+<form id="SearchForm" class="form-group">
+    <div class="form-group">
+        <label>Origin Airport</label>
+        <select class="form-control" id="selectOriginAirport">
+            <option value=" ">Choose an Airport</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Destination Airport</label>
+        <select class="form-control" id="selectDestinationAirport">
+            <option value=" ">Choose an Airport</option>
+        </select>
+    </div>
+
+    <button class="btn btn-primary">Search Flights</button>
+    @Html.ActionLink("Reset", "PlanFlight", "Home", new { @class = "btn btn-warning" })
+</form>
+
+    <div class="divLeft">
+        <h2 class="text-success" style="text-decoration: underline"><strong>Origin Airport</strong></h2>
+        <dl class="dl-horizontal">
+            <dt>Current Weather Summary</dt>
+            <dd id="OriginCurrentForecast"></dd>
+            <dt>Weekly Forecast Summary</dt>
+            <dd id="OriginWeeklyForecast"></dd>
+            <dt>Daily High:</dt>
+            <dd id="originHighTemperature"></dd>
+            <dt>Daily Low</dt>
+            <dd id="originLowTemperature"></dd>
+        </dl>
+       
+    </div>
+    <div class="divRight">
+        <h2 class="text-danger" style="text-decoration: underline"><strong>Destination Airport</strong></h2>
+        <dl class="dl-horizontal">
+            <dt>Current Weather Summary</dt>
+            <dd id="DestinationCurrentForecast"></dd>
+            <dt>Weekly Forecast Summary</dt>
+            <dd id="DestinationWeeklyForecast"></dd>
+            <dt>Daily High:</dt>
+            <dd id="DestinationHighTemperature"></dd>
+            <dt>Daily Low</dt>
+            <dd id="DestinationLowTemperature"></dd>
+        </dl>
+    </div>
+    <div>
+        <h2>Available Flights</h2>
+        <table id="example" class="table table-hover table-bordered" style="width:100%">
+            <thead>
+                <tr class="info">
+                    <th><strong>Quote Id</strong></th>
+                    <th><strong>Origin Airport</strong></th>
+                    <th><strong>Destination Airport</strong></th>
+                    <th><strong>Direct Flight</strong></th>
+                    <th><strong>Flight Price</strong></th>
+                    <th><strong>Departure Date</strong></th>
+
+                </tr>
+            </thead>
+
+        </table>
+    </div>
+<p>
+    @Html.ActionLink("Home Page", "Index", null, new { @class = "btn btn-success" })
+   
+</p>
+
+    <script src="~/Scripts/DropDownList.js"></script>
+    <script src="~/Scripts/FormScript.js?newversion"></script>
+
